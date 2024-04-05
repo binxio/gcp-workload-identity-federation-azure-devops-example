@@ -1,0 +1,19 @@
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: GcpWifAuth@0
+  inputs:
+    connectedServiceId: '' # Specify service connection to use
+    serviceAccount: '' # Specify service account email to impersonate
+- task: GoogleCloudSdkInstaller@1
+  inputs:
+    version: '471.0.0'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'gcloud storage ls'
+  env:
+    GOOGLE_CLOUD_PROJECT: '' # Quota project

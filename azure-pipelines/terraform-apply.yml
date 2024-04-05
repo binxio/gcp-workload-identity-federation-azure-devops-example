@@ -1,0 +1,21 @@
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: GcpWifAuth@0
+  inputs:
+    connectedServiceId: '' # Specify service connection to use
+    serviceAccount: '' # Specify service account email to impersonate
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'terraform init'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'terraform apply -auto-approve'
