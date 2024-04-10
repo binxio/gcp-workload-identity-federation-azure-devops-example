@@ -39,7 +39,7 @@ resource "google_service_account" "azure_devops_project" {
 resource "google_service_account_iam_member" "azure_devops_project_workload_identity_user_azure_devops_organization" {
   service_account_id = google_service_account.azure_devops_project.name
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.azure_devops_organization.name}/attribute.proj/${var.azure_devops_organization_name}/${var.azure_devops_project_name}"
+  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.example.name}/attribute.proj/${var.azure_devops_organization_name}/${var.azure_devops_project_name}"
 }
 
 resource "google_project_iam_member" "azure_devops_project_project_viewer" {
